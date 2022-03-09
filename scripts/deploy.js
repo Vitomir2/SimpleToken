@@ -35,6 +35,17 @@ async function deployContract2() {
     console.log("Owner balance: ", ownerBalance.toString());
     console.log("Token balance: ", tokenBalance.toString());
 }
+
+async function deployContractWrap() {
+    const ETHWrapper = await ethers.getContractFactory("ETHWrapper");
+    const ethWrapperContract = await ETHWrapper.deploy();
+    console.log('Waiting for ETHWrapper deployment...');
+
+    await ethWrapperContract.deployed();
+    console.log("Contract address: ", ethWrapperContract.address);
+    console.log("Deployment done!");
+}
   
-module.exports = deployContract;
-//module.exports = deployContract2;
+// module.exports = deployContract;
+// module.exports = deployContract2;
+module.exports = deployContractWrap;
