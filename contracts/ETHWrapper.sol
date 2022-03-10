@@ -30,4 +30,12 @@ contract ETHWrapper {
 		emit LogETHUnwrapped(msg.sender, value);
 	}
 
+	receive() external payable {
+		wrap();
+	}
+
+	fallback() external payable {
+		wrap();
+	}
+
 }

@@ -9,7 +9,7 @@ const run = async function() {
 
 	const providerURL = "http://localhost:8545";
 	const walletPrivateKey = "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80";
-	const wrapperContractAddress = "0x0165878A594ca255338adfa4d48449f69242Eb8F";
+	const wrapperContractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
 	const provider = new ethers.providers.JsonRpcProvider(providerURL)
 	
@@ -26,7 +26,8 @@ const run = async function() {
     const wrapValue = ethers.utils.parseEther("1");
     console.log("Value to be (un)wrapped: ", wrapValue);
 
-    const wrapTx = await wrapperContract.wrap({value: wrapValue});
+    // const wrapTx = await wrapperContract.wrap({value: wrapValue});
+    const wrapTx = await wallet.sendTransaction({ to: wrapperContractAddress, value: wrapValue })
     await wrapTx.wait();
 
     let balance = await tokenContract.balanceOf(wallet.address);
